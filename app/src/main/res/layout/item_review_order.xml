@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="4dp"
+    card_view:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/tvCartItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fried Rice"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#111111" />
+
+        <TextView
+            android:id="@+id/tvCartItemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price: $12.99"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvCartItemOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Options: No Onion, Extra Egg"
+            android:textSize="14sp"
+            android:textColor="#444444"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvCartItemNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Note: less spicy"
+            android:textSize="14sp"
+            android:textColor="#444444"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btnDecreaseQty"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="-"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#D32F2F"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:id="@+id/tvQuantity"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#111111" />
+
+            <Button
+                android:id="@+id/btnIncreaseQty"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="+"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2E7D32"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"
+                android:textAllCaps="false"
+                android:layout_marginEnd="12dp" />
+
+            <Button
+                android:id="@+id/btnRemoveItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#555555" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gift Card Payment"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Instruction -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your 5-digit gift card code"
+        android:textSize="16sp"
+        android:textColor="#555555"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Input -->
+    <EditText
+        android:id="@+id/etGiftCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 12345"
+        android:inputType="number"
+        android:maxLength="5"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Pay Button -->
+    <Button
+        android:id="@+id/btnPayGift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply Gift Card"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#2E7D32"
+        android:padding="14dp" />
+
+</LinearLayout>

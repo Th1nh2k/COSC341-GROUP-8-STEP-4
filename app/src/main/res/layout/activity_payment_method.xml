@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payment"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select your payment method"
+        android:textSize="16sp"
+        android:textColor="#555555"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Cash -->
+    <Button
+        android:id="@+id/btnCash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cash"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#2E7D32"
+        android:padding="14dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Gift Card -->
+    <Button
+        android:id="@+id/btnGiftCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gift Card"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#388E3C"
+        android:padding="14dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Card -->
+    <Button
+        android:id="@+id/btnCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Debit / Credit Card"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1B5E20"
+        android:padding="14dp" />
+
+</LinearLayout>

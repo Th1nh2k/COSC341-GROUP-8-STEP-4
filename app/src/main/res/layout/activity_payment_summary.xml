@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Final Summary"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/tvItemsSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No items."
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/tvSubtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subtotal: $0.00"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvTax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tax (13%): $0.00"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: $0.00"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="32dp" />
+
+        <Button
+            android:id="@+id/btnContinueToPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue to Pay"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2E7D32"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnBackToMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to Menu"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#757575" />
+
+    </LinearLayout>
+</ScrollView>
