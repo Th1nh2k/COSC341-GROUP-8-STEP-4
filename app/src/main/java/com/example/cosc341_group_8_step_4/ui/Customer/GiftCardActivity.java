@@ -78,6 +78,7 @@ public class GiftCardActivity extends AppCompatActivity {
     }
 
     private void goToThankYou() {
+        AppData.orders.clear();
         startActivity(new Intent(this, ThankYouActivity.class));
         finish();
     }

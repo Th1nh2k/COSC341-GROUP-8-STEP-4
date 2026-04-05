@@ -67,19 +67,17 @@ public class PaymentSummaryActivity extends AppCompatActivity {
             return;
         }
 
-        Order latestOrder = AppData.orders.get(AppData.orders.size() - 1);
-
         StringBuilder summaryBuilder = new StringBuilder();
         double subtotal = 0.0;
 
-        if (latestOrder.items != null) {
-            for (CartItem item : latestOrder.items) {
+        for (Order order : AppData.orders) {
+            if (order.items == null) continue;
+            for (CartItem item : order.items) {
                 double itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
 
                 summaryBuilder.append(item.name)
-                        .append(" x")
-                        .append(item.quantity)
+                        .append(" x").append(item.quantity)
                         .append(" - $")
                         .append(String.format(Locale.US, "%.2f", itemTotal))
                         .append("\n");
@@ -91,9 +89,7 @@ public class PaymentSummaryActivity extends AppCompatActivity {
                 }
 
                 if (item.note != null && !item.note.trim().isEmpty()) {
-                    summaryBuilder.append("Note: ")
-                            .append(item.note)
-                            .append("\n");
+                    summaryBuilder.append("Note: ").append(item.note).append("\n");
                 }
 
                 summaryBuilder.append("\n");

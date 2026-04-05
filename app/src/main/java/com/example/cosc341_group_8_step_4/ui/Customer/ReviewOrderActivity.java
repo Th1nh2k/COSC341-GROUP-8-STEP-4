@@ -94,7 +94,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
                     .append(" x")
                     .append(item.quantity)
                     .append(" - $")
-                    .append(String.format(Locale.US, "%.2f", item.price))
+                    .append(String.format(Locale.US, "%.2f", item.price * item.quantity))
                     .append("\n");
 
             if (item.selectedOptions != null && !item.selectedOptions.isEmpty()) {
