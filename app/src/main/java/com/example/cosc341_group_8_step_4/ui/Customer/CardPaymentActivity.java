@@ -13,7 +13,7 @@ import com.example.cosc341_group_8_step_4.R;
 public class CardPaymentActivity extends AppCompatActivity {
 
     private EditText etCardNumber, etCVV, etExpiry, etCardName;
-    private Button btnPayCard;
+    private Button btnPayCard, btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,12 @@ public class CardPaymentActivity extends AppCompatActivity {
         etExpiry = findViewById(R.id.etExpiry);
         etCardName = findViewById(R.id.etCardName);
         btnPayCard = findViewById(R.id.btnPayCard);
+        btnBack = findViewById(R.id.btnBack);
 
+        // Back button
+        btnBack.setOnClickListener(v -> finish());
+
+        // Pay button
         btnPayCard.setOnClickListener(v -> processPayment());
     }
 
@@ -49,8 +54,8 @@ public class CardPaymentActivity extends AppCompatActivity {
             return;
         }
 
-        if (expiry.isEmpty()) {
-            etExpiry.setError("Expiry date required");
+        if (expiry.length() != 4) {
+            etExpiry.setError("Expiry must be 4 digits (MMYY)");
             return;
         }
 
@@ -59,7 +64,6 @@ public class CardPaymentActivity extends AppCompatActivity {
             return;
         }
 
-        // ===== SUCCESS =====
         Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, ThankYouActivity.class);
