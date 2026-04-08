@@ -2,8 +2,10 @@ package com.example.cosc341_group_8_step_4.ui.Customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 public class ModificationItemActivity extends AppCompatActivity {
 
     private TextView tvDishName;
-    private CheckBox cbOption1, cbOption2, cbOption3, cbOption4, cbOption5, cbOption6;
+    private GridLayout layoutOptions;
     private Button btnBack, btnAdditionalRequirement;
 
     private String itemName;
@@ -29,12 +31,7 @@ public class ModificationItemActivity extends AppCompatActivity {
 
         tvDishName = findViewById(R.id.tvDishName);
 
-        cbOption1 = findViewById(R.id.cbOption1);
-        cbOption2 = findViewById(R.id.cbOption2);
-        cbOption3 = findViewById(R.id.cbOption3);
-        cbOption4 = findViewById(R.id.cbOption4);
-        cbOption5 = findViewById(R.id.cbOption5);
-        cbOption6 = findViewById(R.id.cbOption6);
+        layoutOptions = findViewById(R.id.layoutOptions);
 
         btnBack = findViewById(R.id.btnBack);
         btnAdditionalRequirement = findViewById(R.id.btnAdditionalRequirement);
@@ -55,23 +52,14 @@ public class ModificationItemActivity extends AppCompatActivity {
         btnAdditionalRequirement.setOnClickListener(v -> {
             ArrayList<String> selectedOptions = new ArrayList<>();
 
-            if (cbOption1.getVisibility() == CheckBox.VISIBLE && cbOption1.isChecked()) {
-                selectedOptions.add(cbOption1.getText().toString());
-            }
-            if (cbOption2.getVisibility() == CheckBox.VISIBLE && cbOption2.isChecked()) {
-                selectedOptions.add(cbOption2.getText().toString());
-            }
-            if (cbOption3.getVisibility() == CheckBox.VISIBLE && cbOption3.isChecked()) {
-                selectedOptions.add(cbOption3.getText().toString());
-            }
-            if (cbOption4.getVisibility() == CheckBox.VISIBLE && cbOption4.isChecked()) {
-                selectedOptions.add(cbOption4.getText().toString());
-            }
-            if (cbOption5.getVisibility() == CheckBox.VISIBLE && cbOption5.isChecked()) {
-                selectedOptions.add(cbOption5.getText().toString());
-            }
-            if (cbOption6.getVisibility() == CheckBox.VISIBLE && cbOption6.isChecked()) {
-                selectedOptions.add(cbOption6.getText().toString());
+            for (int i = 0; i < layoutOptions.getChildCount(); i++) {
+                View child = layoutOptions.getChildAt(i);
+                if (child instanceof CheckBox) {
+                    CheckBox checkBox = (CheckBox) child;
+                    if (checkBox.isChecked()) {
+                        selectedOptions.add(checkBox.getText().toString());
+                    }
+                }
             }
 
             Intent intent = new Intent(ModificationItemActivity.this, AdditionalRequirementActivity.class);
@@ -83,15 +71,22 @@ public class ModificationItemActivity extends AppCompatActivity {
     }
 
     private void setCheckboxOptions(String[] options) {
-        CheckBox[] checkBoxes = {cbOption1, cbOption2, cbOption3, cbOption4, cbOption5, cbOption6};
+        layoutOptions.removeAllViews();
 
-        for (int i = 0; i < checkBoxes.length; i++) {
-            if (options != null && i < options.length) {
-                checkBoxes[i].setText(options[i]);
-                checkBoxes[i].setVisibility(CheckBox.VISIBLE);
-            } else {
-                checkBoxes[i].setVisibility(CheckBox.GONE);
-            }
+        if (options == null) return;
+
+        for (String option : options) {
+            CheckBox checkBox = new CheckBox(this);
+            checkBox.setText(option);
+            checkBox.setTextSize(18);
+
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+            params.width = 0;
+            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+            params.setMargins(16, 16, 16, 16);
+            checkBox.setLayoutParams(params);
+
+            layoutOptions.addView(checkBox);
         }
     }
 }

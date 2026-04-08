@@ -50,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         btnPayment = findViewById(R.id.btnPayment);
         btnViewCart = findViewById(R.id.btnViewCart);
 
-        menuList = new ArrayList<>(AppData.menuItems);
+        menuList = AppData.menuItems;
         adapter = new MenuAdapter(menuList);
 
         recyclerMenu.setLayoutManager(new LinearLayoutManager(this));
@@ -183,5 +183,12 @@ public class MenuActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean("isServerCalled", isServerCalled);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        filterMenu("Food");
+        updateCategoryButtonStyles(btnFood);
     }
 }
