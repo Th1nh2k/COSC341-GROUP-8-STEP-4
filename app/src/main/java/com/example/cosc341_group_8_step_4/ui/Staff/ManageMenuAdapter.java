@@ -3,6 +3,7 @@ package com.example.cosc341_group_8_step_4.ui.Staff;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,15 @@ public class ManageMenuAdapter extends RecyclerView.Adapter<ManageMenuAdapter.Vi
         holder.tvName.setText(item.name);
         holder.tvCategory.setText("Category: " + item.category);
         holder.tvPrice.setText(String.format(Locale.US, "$%.2f", item.price));
+        if (item.isAvailable) {
+            holder.tvStatus.setText("Available");
+            holder.tvStatus.setTextColor(Color.parseColor("#2E7D32"));
+            holder.itemView.setAlpha(1.0f);
+        } else {
+            holder.tvStatus.setText("Unavailable");
+            holder.tvStatus.setTextColor(Color.parseColor("#D32F2F"));
+            holder.itemView.setAlpha(0.5f);
+        }
 
         if (item.imagePath != null && !item.imagePath.isEmpty()) {
             File file = new File(item.imagePath);
@@ -94,7 +104,7 @@ public class ManageMenuAdapter extends RecyclerView.Adapter<ManageMenuAdapter.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgItem;
-        TextView tvName, tvCategory, tvPrice;
+        TextView tvName, tvCategory, tvPrice, tvStatus;
         Button btnEdit, btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
@@ -104,6 +114,7 @@ public class ManageMenuAdapter extends RecyclerView.Adapter<ManageMenuAdapter.Vi
             tvName = itemView.findViewById(R.id.tvManageItemName);
             tvCategory = itemView.findViewById(R.id.tvManageItemCategory);
             tvPrice = itemView.findViewById(R.id.tvManageItemPrice);
+            tvStatus = itemView.findViewById(R.id.tvManageItemStatus);
             btnEdit = itemView.findViewById(R.id.btnEditItem);
             btnDelete = itemView.findViewById(R.id.btnDeleteItem);
         }

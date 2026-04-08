@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -28,6 +29,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
     private Spinner spinnerCategory;
     private Button btnSave, btnCancel, btnUploadFoodImage;
     private ImageView imgFoodPreview;
+    private CheckBox cbItemAvailable;
 
     private String mode;
     private int itemIndex = -1;
@@ -58,6 +60,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
         btnUploadFoodImage = findViewById(R.id.btnUploadFoodImage);
         imgFoodPreview = findViewById(R.id.imgFoodPreview);
         etOptions = findViewById(R.id.etItemOptions);
+        cbItemAvailable = findViewById(R.id.cbItemAvailable);
 
         String[] categories = {"Food", "Drinks", "Desserts"};
         spinnerCategory.setAdapter(new ArrayAdapter<>(
@@ -79,6 +82,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
             etName.setText(item.name);
             etDescription.setText(item.description);
             etPrice.setText(String.valueOf(item.price));
+            cbItemAvailable.setChecked(item.isAvailable);
 
             currentImagePath = item.imagePath;
             currentImageResId = item.imageResId;
@@ -115,6 +119,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
         String priceText = etPrice.getText().toString().trim();
         String category = spinnerCategory.getSelectedItem().toString();
         String optionsText = etOptions.getText().toString().trim();
+        boolean isAvailable = cbItemAvailable.isChecked();
 
         if (name.isEmpty() || description.isEmpty() || priceText.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -160,6 +165,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
             item.imagePath = finalImagePath;
             item.imageResId = finalImageResId;
             item.options = optionsArray;
+            item.isAvailable = isAvailable;
         } else {
             MenuItem newItem = new MenuItem(
                     name,
@@ -171,6 +177,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
                     optionsArray
             );
 
+            newItem.isAvailable = isAvailable;
             AppData.addMenuItem(newItem);
         }
 
