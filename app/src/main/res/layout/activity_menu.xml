@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="24dp"
+        android:paddingTop="52dp"
         android:background="#2E7D32">
 
         <TextView
@@ -94,7 +96,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="12dp"
-        android:clipToPadding="false" />
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        />
 
     <!-- Bottom Actions -->
     <LinearLayout

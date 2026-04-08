@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cosc341_group_8_step_4.R;
+import com.example.cosc341_group_8_step_4.data.AppData;
 
 public class PaymentMethodActivity extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
                     .setTitle("Cash Payment")
                     .setMessage("A server is coming to collect your payment.")
                     .setPositiveButton("OK", (d, w) -> {
+                        AppData.orders.clear();
                         startActivity(new Intent(this, MenuActivity.class));
                         finish();
                     })

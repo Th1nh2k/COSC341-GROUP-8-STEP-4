@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cosc341_group_8_step_4.R;
+import com.example.cosc341_group_8_step_4.data.AppData;
 
 public class CardPaymentActivity extends AppCompatActivity {
 
@@ -65,7 +66,7 @@ public class CardPaymentActivity extends AppCompatActivity {
         }
 
         Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
-
+        AppData.orders.clear();
         Intent intent = new Intent(this, ThankYouActivity.class);
         startActivity(intent);
         finish();
