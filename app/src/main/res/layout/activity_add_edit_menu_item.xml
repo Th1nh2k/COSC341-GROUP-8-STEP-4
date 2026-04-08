@@ -74,6 +74,23 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customization Options"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etItemOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter options separated by commas"
+            android:minLines="3"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

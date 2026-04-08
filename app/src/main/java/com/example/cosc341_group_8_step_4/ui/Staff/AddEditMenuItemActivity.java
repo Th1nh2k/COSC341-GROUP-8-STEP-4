@@ -24,7 +24,7 @@ import java.io.InputStream;
 
 public class AddEditMenuItemActivity extends AppCompatActivity {
 
-    private EditText etName, etDescription, etPrice;
+    private EditText etName, etDescription, etPrice, etOptions;
     private Spinner spinnerCategory;
     private Button btnSave, btnCancel, btnUploadFoodImage;
     private ImageView imgFoodPreview;
@@ -57,6 +57,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancelItem);
         btnUploadFoodImage = findViewById(R.id.btnUploadFoodImage);
         imgFoodPreview = findViewById(R.id.imgFoodPreview);
+        etOptions = findViewById(R.id.etItemOptions);
 
         String[] categories = {"Food", "Drinks", "Desserts"};
         spinnerCategory.setAdapter(new ArrayAdapter<>(
@@ -70,6 +71,10 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
 
         if ("edit".equals(mode) && itemIndex >= 0) {
             MenuItem item = AppData.menuItems.get(itemIndex);
+
+            if (item.options != null && item.options.length > 0) {
+                etOptions.setText(String.join(", ", item.options));
+            }
 
             etName.setText(item.name);
             etDescription.setText(item.description);
@@ -109,6 +114,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
         String description = etDescription.getText().toString().trim();
         String priceText = etPrice.getText().toString().trim();
         String category = spinnerCategory.getSelectedItem().toString();
+        String optionsText = etOptions.getText().toString().trim();
 
         if (name.isEmpty() || description.isEmpty() || priceText.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -136,6 +142,14 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
             finalImageResId = 0;
         }
 
+        String[] optionsArray;
+
+        if (optionsText.isEmpty()) {
+            optionsArray = new String[0];
+        } else {
+            optionsArray = optionsText.split("\\s*,\\s*");
+        }
+
         if ("edit".equals(mode) && itemIndex >= 0) {
             MenuItem item = AppData.menuItems.get(itemIndex);
 
@@ -145,11 +159,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
             item.category = category;
             item.imagePath = finalImagePath;
             item.imageResId = finalImageResId;
-
-            if (item.options == null) {
-                item.options = new String[]{"Option 1","Option 2","Option 3","Option 4","Option 5","Option 6"};
-            }
-
+            item.options = optionsArray;
         } else {
             MenuItem newItem = new MenuItem(
                     name,
@@ -158,7 +168,7 @@ public class AddEditMenuItemActivity extends AppCompatActivity {
                     category,
                     finalImageResId,
                     finalImagePath,
-                    new String[]{"Option 1","Option 2","Option 3","Option 4","Option 5","Option 6"}
+                    optionsArray
             );
 
             AppData.addMenuItem(newItem);
