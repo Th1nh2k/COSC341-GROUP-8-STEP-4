@@ -43,6 +43,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         holder.description.setText(item.description);
         holder.price.setText(String.format(Locale.US, "$%.2f", item.price));
 
+        if (item.isAvailable) {
+            holder.addBtn.setEnabled(true);
+            holder.addBtn.setText("Add");
+            holder.itemView.setAlpha(1.0f);
+        } else {
+            holder.addBtn.setEnabled(false);
+            holder.addBtn.setText("Unavailable");
+            holder.itemView.setAlpha(0.5f);
+        }
+
         if (item.imagePath != null && !item.imagePath.isEmpty()) {
             File file = new File(item.imagePath);
             if (file.exists()) {
@@ -59,6 +69,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         }
 
         holder.addBtn.setOnClickListener(v -> {
+            if (!item.isAvailable) {
+                return;
+            }
             Intent intent = new Intent(v.getContext(), ModificationItemActivity.class);
             intent.putExtra("itemName", item.name);
             intent.putExtra("itemPrice", item.price);
