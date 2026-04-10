@@ -15,6 +15,8 @@ public class AppData {
     public static List<Order> orders = new ArrayList<>();
     public static java.util.HashMap<String, Double> giftCards = new java.util.HashMap<>();
 
+    public static boolean isServerCalled = false;
+
     // Gift Card Data
     static {
         giftCards.put("12345", 50.0);

@@ -28,16 +28,12 @@ public class MenuActivity extends AppCompatActivity {
     private Button btnAll, btnFood, btnDrinks, btnDesserts;
     private Button btnCallServer, btnPayment, btnViewCart;
 
-    private boolean isServerCalled = false;
+    private String currentCategory = "All";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        if (savedInstanceState != null) {
-            isServerCalled = savedInstanceState.getBoolean("isServerCalled", false);
-        }
 
         recyclerMenu = findViewById(R.id.recyclerMenu);
 
@@ -80,7 +76,7 @@ public class MenuActivity extends AppCompatActivity {
         updateCallServerButton();
 
         btnCallServer.setOnClickListener(v -> {
-            if (!isServerCalled) {
+            if (!AppData.isServerCalled) {
                 showCallServerDialog();
             } else {
                 showCancelCallServerDialog();
@@ -111,7 +107,7 @@ public class MenuActivity extends AppCompatActivity {
                 .setTitle("Call Server")
                 .setMessage("Do you want to call the server?")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    isServerCalled = true;
+                    AppData.isServerCalled = true;
                     updateCallServerButton();
                     Toast.makeText(this, "Server has been called", Toast.LENGTH_SHORT).show();
                 })
@@ -124,7 +120,7 @@ public class MenuActivity extends AppCompatActivity {
                 .setTitle("Cancel Call Server")
                 .setMessage("Do you want to cancel the server call?")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    isServerCalled = false;
+                    AppData.isServerCalled = false;
                     updateCallServerButton();
                     Toast.makeText(this, "Server call cancelled", Toast.LENGTH_SHORT).show();
                 })
@@ -133,7 +129,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void updateCallServerButton() {
-        if (isServerCalled) {
+        if (AppData.isServerCalled) {
             btnCallServer.setText("Cancel Call Server");
             btnCallServer.setBackgroundTintList(
                     ColorStateList.valueOf(Color.parseColor("#757575"))
@@ -163,6 +159,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void filterMenu(String category) {
+        currentCategory = category;
         List<MenuItem> filteredList = new ArrayList<>();
 
         if (category.equals("All")) {
@@ -180,15 +177,13 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("isServerCalled", isServerCalled);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
-        filterMenu("Food");
-        updateCategoryButtonStyles(btnFood);
+        filterMenu(currentCategory);
+        updateCategoryButtonStyles(
+                currentCategory.equals("All") ? btnAll :
+                        currentCategory.equals("Food") ? btnFood :
+                                currentCategory.equals("Drinks") ? btnDrinks : btnDesserts
+        );
     }
 }

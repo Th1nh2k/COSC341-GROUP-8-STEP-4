@@ -30,6 +30,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
                     .setTitle("Cash Payment")
                     .setMessage("A server is coming to collect your payment.")
                     .setPositiveButton("OK", (d, w) -> {
+                        AppData.isServerCalled = true;
                         AppData.orders.clear();
                         startActivity(new Intent(this, MenuActivity.class));
                         finish();
